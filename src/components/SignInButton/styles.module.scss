@@ -1,0 +1,13 @@
+.signInButton {
+    padding: 0;
+    margin: 0;
+    border: 0;
+    background: none;
+    
+    .account {
+        margin: 0;
+        height: 40px;
+        width: 40px;
+        filter: invert(31%) sepia(71%) saturate(6928%) hue-rotate(330deg) brightness(98%) contrast(89%);
+    }
+}
