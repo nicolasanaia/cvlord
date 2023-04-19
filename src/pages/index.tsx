@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import { Inter } from 'next/font/google'
 import styles from './home.module.css'
-import { UserInfo } from '@/components/UserInfo'
+import CoverTable from '@/components/CoverTable'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -12,7 +12,7 @@ export default function Home() {
         <title>Home | CVLord</title>
       </Head>
       <main>
-        <UserInfo />
+        <CoverTable />
       </main>
     </>
   )

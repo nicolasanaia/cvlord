@@ -10,6 +10,10 @@ module.exports = {
   ],
   darkMode: 'class',
   theme: {
+    fontFamily: {
+      'hanken': ['Hanken Grotesk', 'sans-serif'],
+      'roboto': ['Roboto', 'Poppins', 'sans-serif']
+    },
     screens: {
       'sm': '640px',
       'md': '768px',
@@ -36,6 +40,7 @@ module.exports = {
         100: '#EEAFC2',
         400: '#EC2662',
         500: '#D62F4D',
+        700: '#C3003B',
       }
     },
     extend: {
