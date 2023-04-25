@@ -1,41 +1,75 @@
 import { Tab } from "@headlessui/react";
 import { useState } from "react";
+import Summary from "../Summary";
+import Experience from "../Experience";
+import Education from "../Education";
+import Skills from "../Skills";
+import Extracurricular from "../Extracurricular";
+import Projects from "../Projects";
+
+function classNames(...classes: any) {
+    return classes.filter(Boolean).join(' ')
+  }
 
 export default function TabMenu() {     
-    const [isShowing, setIsShowing] = useState(false)
+    let [categories] = useState({
+        Summary: {
+            id: 1,
+            item: <Summary />,
+        },
+        Experience: {
+            id: 2,
+            item: <Experience />,
+        },
+        Education: {
+            id: 3,
+            item: <Education />,
+        },
+        Skills: {
+            id: 4,
+            item: <Skills />,
+        },
+        Extracurricular: {
+            id: 5,
+            item: <Extracurricular />,
+        },
+        Projects: {
+            id: 6,
+            item: <Projects />,
+        },
+      })
 
     return (
-    <div className='mx-auto mt-20 max-w-[80%]'>
+    <div className='w-[80%] max-w-l mx-auto px-2 py-16 sm:px-0'>
         <Tab.Group>
-            <Tab.List className='flex justify-center mx-auto h-7 max-w-[90%] border-b border-b-white/10'>
-                <Tab className='mr-20 ui-selected:border-b-2 ui-selected:rounded-sm text- ui-selected:text-highlightPrimary ui-not-selected:text-fontPrimary transition-colors duration-200 hover:text-highlightPrimary'>
-                    Summary
+            <Tab.List className='flex space-x-1 border-b border-b-white/10 h-7'>
+            {Object.keys(categories).map((category) => (
+                <Tab
+                key={category}
+                className={({ selected }) =>
+                    classNames(
+                    'w-full transition-all duration-150',
+                    selected
+                        ? 'border-b-2 border-b-highlightPrimary text-highlightPrimary'
+                        : 'text-fontPrimary hover:text-highlightPrimary hover:border-b-2 hover:border-b-highlightPrimary'
+                    )
+                }
+                >
+                    {category}
                 </Tab>
-                <Tab className='mr-20 ui-selected:border-b-2 ui-selected:rounded-sm ui-selected:text-highlightPrimary ui-not-selected:text-fontPrimary transition-colors duration-200 hover:text-highlightPrimary'>
-                    Experience    
-                </Tab>
-                <Tab className='mr-20 ui-selected:border-b-2 ui-selected:rounded-sm ui-selected:text-highlightPrimary ui-not-selected:text-fontPrimary leading-20 transition-colors duration-200 hover:text-highlightPrimary'>
-                    Education    
-                </Tab>
-                <Tab className='mr-20 ui-selected:border-b-2 ui-selected:rounded-sm ui-selected:text-highlightPrimary ui-not-selected:text-fontPrimary transition-colors duration-200'>
-                    Skills    
-                </Tab>
-                <Tab className='mr-20 ui-selected:border-b-2 ui-selected:rounded-sm ui-selected:border-b-text-fontPrimary ui-selected:text-highlightPrimary ui-not-selected:text-fontPrimary transition-colors duration-200'>
-                    Extracurricular    
-                </Tab>
-                <Tab className={'hover:text-highlightPrimary ui-selected:border-b-2 ui-selected:rounded-sm ui-selected:border-b-text-fontPrimary ui-selected:text-highlightPrimary ui-not-selected:text-fontPrimary transition-colors duration-200'}>
-                    Projects    
-                </Tab>
+            ))}
             </Tab.List>
-            <Tab.Panels className='mt-5 mx-auto max-w-[90%] h-vh'>
-                <Tab.Panel className='align-middle leading-6'>In my last experience, I have worked as a Software Developer at iClubs. I study at Federal University of ABC (UFABC), one of the greatest in Latin
-America and currently coursing the Bachelor of Computer Science and the Bachelor of Science and Technology. The things I like the most in a
-work environment is finding new opportunities to expand our limits and develop new horizons for both the company and myself.</Tab.Panel>
-                <Tab.Panel>Experience</Tab.Panel>
-                <Tab.Panel>Education</Tab.Panel>
-                <Tab.Panel>Skills</Tab.Panel>
-                <Tab.Panel>Extracurricular</Tab.Panel>
-                <Tab.Panel>Projects</Tab.Panel>
+            <Tab.Panels className='mt-2'>
+                {Object.values(categories).map((category, idx) => (
+                    <Tab.Panel
+                        key={idx}
+                        className={classNames(
+                            'p-3',
+                        )}
+                    >
+                        {category.item}
+                    </Tab.Panel>
+                ))}
             </Tab.Panels>
         </Tab.Group>
     </div>

@@ -7,10 +7,10 @@ export default function CoverTable() {
             <div className='mx-auto my-1 font-hanken font-extralight text-3xl text-highlightPrimary'>
                 Software Engineer
             </div>
-            <div className='mx-auto my-2 font-hanken font-light text-sm text-fontPrimary opacity-80'>
+            <div className='mx-auto my-2 font-hanken font-light text-normal text-fontPrimary opacity-80'>
                 São Caetano do Sul, SP, Brasil
             </div>
-            <div className='mx-auto my-3 font-hanken font-light text-sm text-fontPrimary'>
+            <div className='mx-auto my-3 font-hanken font-light text-l text-fontPrimary'>
                 "It's very hard to fail completely if you aim high enough"
             </div>
         </div>
