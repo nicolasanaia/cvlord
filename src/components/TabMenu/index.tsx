@@ -48,7 +48,7 @@ export default function TabMenu() {
                 key={category}
                 className={({ selected }) =>
                     classNames(
-                    'w-full transition-all duration-150',
+                    'w-full transition-all duration-200 outline-none',
                     selected
                         ? 'border-b-2 border-b-highlightPrimary text-highlightPrimary'
                         : 'text-fontPrimary hover:text-highlightPrimary hover:border-b-2 hover:border-b-highlightPrimary'

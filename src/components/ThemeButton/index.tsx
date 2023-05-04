@@ -11,7 +11,7 @@ export function ThemeButton({mode, handleChangeTheme}: ThemeButtonProps) {
                     checked={mode === 'dark'}
                     onChange={handleChangeTheme}
                 >
-                    <span className='h-4 w-4 bg-backgroundPrimary rounded-full  inline-block transform transition ui-checked:text-fontPrimary ui-not-checked:text-fontPrimary ui-not-checked:tranlate-x-1 ui-checked:translate-x-6'/>
+                    <span className='h-4 w-4 bg-backgroundPrimary rounded-full  inline-block transform transition ui-checked:text-fontPrimary ui-not-checked:text-fontPrimary ui-not-checked:tranlate-x-1 ui-checked:translate-x-6 duration-400'/>
                 </Switch>
             {mode === 'dark' ? (
                 <svg className='stroke-fontPrimary h-7 w-7 transition duration-150 ease-in-out hover:stroke-highlightPrimary' xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' strokeWidth={1.5}>
