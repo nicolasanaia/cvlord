@@ -28,8 +28,8 @@
   --backgroundPrimary: var(--purple-50);
   --backgroundSecondary: var(--purple-100);
   --fontPrimary: var(--purple-900);
-  --highlightPrimary: var(--coral-700);
-  --highlightSecondary: var(--coral-400);
+  --highlightPrimary: var(--coral-400);
+  --highlightSecondary: var(--coral-700);
 }
 
 * {

@@ -19,7 +19,7 @@ export default function Auth() {
                 <h2 className='text-highlightPrimary font-hanken font-extralight text-4xl mb-8'>
                     {hasAccount === 'login' ? 'Log In' : 'Sign Up'}
                 </h2>
-                <div className='flex flex-col gap-4'>
+                <div className='flex flex-col font-hanken gap-4'>
                     {hasAccount === 'register' && (
                         <Input
                         label='Name'
@@ -44,12 +44,12 @@ export default function Auth() {
                         value={password}
                     />
                 </div>
-                <button className='bg-highlightPrimary py-3 text-fontPrimary rounded-lg w-full mt-10 brightness-90 hover:brightness-100 hover:shadow-inner hover:shadow-highlightPrimary transition duration-200'>
+                <button className='bg-highlightPrimary py-3 text-fontPrimary font-hanken font-medium text-lg rounded-lg w-full mt-10 brightness-90 hover:brightness-100 hover:shadow-inner hover:shadow-highlightPrimary transition duration-200'>
                     {hasAccount === 'login' ? 'Log in' : 'Sign up'}
                 </button>
-                <p className='text-fontPrimary mt-12'>
+                <p className='text-fontPrimary font-hanken mt-12'>
                     {hasAccount === 'login' ? 'First time using CVLord? ' : 'Already have an account? '}
-                    <span onClick={toggleHasAccount} className='text-highlightPrimary ml-1 hover:underline cursor-pointer'>
+                    <span onClick={toggleHasAccount} className='text-highlightPrimary font-hanken hover:underline cursor-pointer'>
                         {hasAccount === 'login' ? 'Create an account' : 'Log in here'}
                     </span>
                 </p>
