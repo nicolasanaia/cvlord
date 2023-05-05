@@ -48,7 +48,7 @@ export default function TabMenu() {
                 key={category}
                 className={({ selected }) =>
                     classNames(
-                    'w-full transition-all duration-200 outline-none',
+                    'font-hanken text-lg w-full transition-all duration-200 outline-none',
                     selected
                         ? 'border-b-2 border-b-highlightPrimary text-highlightPrimary'
                         : 'text-fontPrimary hover:text-highlightPrimary hover:border-b-2 hover:border-b-highlightPrimary'
@@ -64,7 +64,7 @@ export default function TabMenu() {
                     <Tab.Panel
                         key={idx}
                         className={classNames(
-                            'p-3',
+                            'text-lg font-normal font-hanken p-3',
                         )}
                     >
                         {category.item}

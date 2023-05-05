@@ -6,6 +6,8 @@
   --white: theme(colors.white);
 
   --purple-50: theme(colors.purple.50);
+  --purple-100: theme(colors.purple.100);
+  --purple-850: theme(colors.purple.850);
   --purple-900: theme(colors.purple.900);
 
   --coral-100: theme(colors.coral.100);
@@ -16,6 +18,7 @@
 
 .dark-theme {
   --backgroundPrimary: var(--purple-900);
+  --backgroundSecondary: var(--purple-850);
   --fontPrimary: var(--white);
   --highlightPrimary: var(--coral-400);
   --highlightSecondary: var(--coral-100);
@@ -23,6 +26,7 @@
 
 .light-theme {
   --backgroundPrimary: var(--purple-50);
+  --backgroundSecondary: var(--purple-100);
   --fontPrimary: var(--purple-900);
   --highlightPrimary: var(--coral-700);
   --highlightSecondary: var(--coral-400);
