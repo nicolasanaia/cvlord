@@ -42,7 +42,7 @@ export default function TabMenu() {
     return (
     <div className='w-[80%] max-w-l mx-auto px-2 py-16 sm:px-0'>
         <Tab.Group>
-            <Tab.List className='flex space-x-1 border-b border-b-white/10 h-7'>
+            <Tab.List className='flex space-x-1 border-b border-b-white/10 h-9'>
             {Object.keys(categories).map((category) => (
                 <Tab
                 key={category}
