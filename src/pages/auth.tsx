@@ -14,6 +14,7 @@ export default function Auth() {
 
     return (
         <div className='flex justify-center h-auto'>
+            <title>{hasAccount === 'login' ? 'Log In' : 'Sign Up'} | CVLord</title>
             <div className='bg-backgroundSecondary rounded-lg px-16 py-16 my-20 lg:2-2/5 lg:max-w-md rounded-md w-[90%]'>
                 <h2 className='text-highlightPrimary font-hanken font-extralight text-4xl mb-8'>
                     {hasAccount === 'login' ? 'Log In' : 'Sign Up'}
