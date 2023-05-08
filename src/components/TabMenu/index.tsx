@@ -6,6 +6,7 @@ import Education from "../Education";
 import Skills from "../Skills";
 import Extracurricular from "../Extracurricular";
 import Projects from "../Projects";
+import Languages from "../Languages";
 
 function classNames(...classes: any) {
     return classes.filter(Boolean).join(' ')
@@ -36,6 +37,10 @@ export default function TabMenu() {
         Projects: {
             id: 6,
             item: <Projects />,
+        },
+        Languages: {
+            id: 7,
+            item: <Languages />,
         },
       })
 
