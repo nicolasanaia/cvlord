@@ -42,41 +42,45 @@ export default function TabMenu() {
             id: 7,
             item: <Languages />,
         },
-      })
+    })
 
     return (
-    <div className='w-[80%] max-w-l mx-auto px-2 py-16 sm:px-0'>
-        <Tab.Group>
-            <Tab.List className='flex space-x-1 border-b border-b-white/10 h-9'>
-            {Object.keys(categories).map((category) => (
-                <Tab
-                key={category}
-                className={({ selected }) =>
-                    classNames(
-                    'font-hanken text-lg w-full transition-all duration-200 outline-none',
-                    selected
-                        ? 'border-b-2 border-b-highlightPrimary text-highlightPrimary'
-                        : 'text-fontPrimary hover:text-highlightPrimary hover:border-b-2 hover:border-b-highlightPrimary'
-                    )
-                }
+        <div 
+            className='w-[80%] max-w-l mx-auto px-2 py-16 sm:px-0'
+        >
+            <Tab.Group>
+                <Tab.List
+                    className='flex space-x-5 border-b border-b-white/10 h-9 overflow-x-scroll hover:overflow-x-scroll scrollbar-hide min-w-[10rem]'
                 >
-                    {category}
-                </Tab>
-            ))}
-            </Tab.List>
-            <Tab.Panels className='mt-2'>
-                {Object.values(categories).map((category, idx) => (
-                    <Tab.Panel
-                        key={idx}
-                        className={classNames(
-                            'text-lg font-normal font-hanken p-3',
-                        )}
+                {Object.keys(categories).map((category) => (
+                    <Tab
+                    key={category}
+                    className={({ selected }) =>
+                        classNames(
+                        'font-hanken text-lg w-full transition-all duration-200 outline-none',
+                        selected
+                            ? 'border-b-2 border-b-highlightPrimary text-highlightPrimary'
+                            : 'text-fontPrimary hover:text-highlightPrimary hover:border-b-2 hover:border-b-highlightPrimary'
+                        )
+                    }
                     >
-                        {category.item}
-                    </Tab.Panel>
+                        {category}
+                    </Tab>
                 ))}
-            </Tab.Panels>
-        </Tab.Group>
-    </div>
-)
+                </Tab.List>
+                <Tab.Panels className='mt-2'>
+                    {Object.values(categories).map((category, idx) => (
+                        <Tab.Panel
+                            key={idx}
+                            className={classNames(
+                                'text-lg font-normal font-hanken p-3',
+                            )}
+                        >
+                            {category.item}
+                        </Tab.Panel>
+                    ))}
+                </Tab.Panels>
+            </Tab.Group>
+        </div>
+    )
 }

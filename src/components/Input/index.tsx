@@ -1,7 +1,6 @@
-import React from 'react'
 import { InputProps } from './interface'
 
-export default function Input({id, onChange, value, label, type}: InputProps): JSX.Element {
+export default function Input({id, onChange, value, label, type, handleSubmit}: InputProps) {    
     return (
         <div className='relative'>
             <input
@@ -10,6 +9,7 @@ export default function Input({id, onChange, value, label, type}: InputProps): J
                 type={type}
                 onChange={onChange}
                 autoComplete={id}
+                onKeyDown={handleSubmit}
                 className='
                     block
                     rounded-lg

@@ -4,4 +4,5 @@ export interface InputProps {
     value: string;
     label: string;
     type?: string;
+    handleSubmit: (event: any) => void;
 }

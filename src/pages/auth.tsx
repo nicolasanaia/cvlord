@@ -32,12 +32,17 @@ export default function Auth() {
     const [email, setEmail] = useState('');
     const [name, setName] = useState('');
     const [password, setPassword] = useState('');
-
     const [hasAccount, setHasAccount] = useState('login');
 
     const toggleHasAccount = useCallback(() => {
         setHasAccount((currentScreen) => currentScreen === 'login' ? 'register' : 'login')
     }, []);
+
+    const handleSubmit = (event: any): void => {
+        if (event.key === 'Enter') {
+            hasAccount === 'login' ? login() : register();
+        }
+    }
 
     const login = useCallback(async () => {
         try {
@@ -76,12 +81,14 @@ export default function Auth() {
                     {hasAccount === 'login' ? 'Log In' : 'Sign Up'}
                 </h2>
                 <div className='flex flex-col font-hanken gap-4'>
+                    
                     {hasAccount === 'register' && (
-                        <Input
+                    <Input
                         label='Name'
                         onChange={(event: any) => setName(event.target.value)}
                         id='name'
                         value={name}
+                        handleSubmit={handleSubmit}
                     />
                     )}
                     
@@ -91,6 +98,7 @@ export default function Auth() {
                         id='email'
                         type='email'
                         value={email}
+                        handleSubmit={handleSubmit}
                     />
                     <Input
                         label='Password'
@@ -98,9 +106,10 @@ export default function Auth() {
                         id='password'
                         type='password'
                         value={password}
+                        handleSubmit={handleSubmit}
                     />
                 </div>
-                <button onClick={hasAccount === 'login' ? login : register} className='bg-highlightPrimary py-3 text-fontPrimary font-hanken font-medium text-lg rounded-lg w-full mt-10 brightness-90 hover:brightness-100 hover:shadow-inner hover:shadow-highlightPrimary transition duration-200'>
+                <button type='submit' onClick={hasAccount === 'login' ? login : register} className='bg-highlightPrimary py-3 text-fontPrimary font-hanken font-medium text-lg rounded-lg w-full mt-10 brightness-90 hover:brightness-100 hover:shadow-inner hover:shadow-highlightPrimary transition duration-200'>
                     {hasAccount === 'login' ? 'Log in' : 'Sign up'}
                 </button>
                 <div className='flex flex-row items-center gap-4 mt-8 justify-center'>

@@ -58,6 +58,15 @@ button {
   font: 400 1rem 'Roboto', sans-serif;
 }
 
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
 button {
   cursor: pointer;
 }
