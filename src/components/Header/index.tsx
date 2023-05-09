@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router';
-import { AccountButton } from '../AccountButton';
 import { ThemeButton } from '../ThemeButton';
 import { HeaderProps } from './interface';
+import { AccountDropdown } from '../AccountDropdown';
 
 export function Header ({mode, handleChangeTheme}: HeaderProps) {
     const { asPath } = useRouter();
@@ -9,16 +9,14 @@ export function Header ({mode, handleChangeTheme}: HeaderProps) {
     return (
         <header className='flex flex-row items-center justify-between mx-4'>
             <img className='cursor-pointer' src='/assets/img/logo.png' alt='CVLord logo' />
-            <div className='flex justify-end'>
-                {asPath === '/auth' ? (
+            {asPath === '/auth' ? (
+                <ThemeButton mode={mode} handleChangeTheme={handleChangeTheme} />
+            ) : (
+                <div className='flex items-center justify-end'>
                     <ThemeButton mode={mode} handleChangeTheme={handleChangeTheme} />
-                ) : (
-                    <>
-                        <ThemeButton mode={mode} handleChangeTheme={handleChangeTheme} />
-                        <AccountButton />
-                    </>
-                )}
-            </div>
+                    <AccountDropdown />
+                </div>
+            )}
         </header>
     )
 }
