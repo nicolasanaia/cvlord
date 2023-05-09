@@ -34,6 +34,8 @@ module.exports = {
       white: '#fff',
       purple: {
         50: '#F0F0FF',
+        100: '#E0E0F5',
+        850: '#0D0D1C',
         900: '#090913',
       },
       coral: {
@@ -46,6 +48,7 @@ module.exports = {
     extend: {
       colors: {
         backgroundPrimary: 'var(--backgroundPrimary)',
+        backgroundSecondary: 'var(--backgroundSecondary)',
         fontPrimary: 'var(--fontPrimary)',
         highlightPrimary: 'var(--highlightPrimary)',
         highlightSecondary: 'var(--highlightSecondary)',
