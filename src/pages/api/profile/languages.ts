@@ -1,7 +1,7 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import prismadb from '@/lib/prismadb';
 import serverAuth from "@/lib/serverAuth";
-import { ILanguages } from "@/components/Languages/interface";
+import { ILanguages } from '../../../components/Languages/interface'
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
     try {
@@ -9,29 +9,26 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             return res.status(405).end();
         }
 
-        await serverAuth(req);
+        const { currentUser } = await serverAuth(req);
 
-        const { userId } = req.body;
-
-        const languagesUser: ILanguages[] = await prismadb.userLanguages.findMany({
+        const languagesUser = await prismadb.userLanguages.findMany({
             where: {
-                userId: userId,
+                userId: currentUser.id
             }
-        });
-
-        const languages = await prismadb.languages.findMany({
-            where: {
-                
-            }
-        });
+        }) as ILanguages[];
         
+        if (languagesUser.length === 0 ) {
+            return res.status(200).json(languagesUser);
+        }
+
         for (const languageUser of languagesUser) {
-            const matchingLanguage = languages.find(
-                    (language) => language.id === languageUser.languageId
-                );
-                if (matchingLanguage) {
-                    languageUser.language = matchingLanguage.language;
-            }
+            const languages = await prismadb.languages.findFirst({
+                where: {
+                    id: languageUser.languageId
+                }
+            });
+           
+            languageUser.language = languages?.language;
         }
 
         return res.status(200).json(languagesUser);
