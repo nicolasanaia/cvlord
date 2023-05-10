@@ -24,6 +24,12 @@ model User {
   accounts Account[]
   
   profile Profile[]
+  experiences Experience[]
+  education Education[]
+  skills Skills[]
+  projects Projects[]
+  extracurricular Extracurricular[]
+  userLanguages UserLanguages[]
 }
 
 model Account {
@@ -65,7 +71,6 @@ model VerificationToken {
 
 model Profile {
   id String @id @default(auto()) @map("_id") @db.ObjectId
-  userId String @db.ObjectId
   displayName String
   role String
   city String
@@ -73,21 +78,13 @@ model Profile {
   country String
   quotation String
   summary String
-  experiences Experience[]
-  education Education[]
-  skills Skills[]
-  projects Projects[]
-  extracurricular Extracurricular[]
-  languages UserLanguages[]
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
-
-  @@index([userId])
+  userId String 
 }
 
 model Experience {
   id String @id @default(auto()) @map("_id") @db.ObjectId
-  userId String @db.ObjectId
   role String
   company String
   location String?
@@ -98,14 +95,14 @@ model Experience {
   description String?
   competencies String[]
 
-  profile Profile @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId String 
 
   @@index([userId])
 }
 
 model Education {
   id String @id @default(auto()) @map("_id") @db.ObjectId
-  userId String @db.ObjectId
   institution String
   degree String?
   course String?
@@ -113,37 +110,37 @@ model Education {
   endDate DateTime?
   description String?
 
-  profile Profile @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId String 
 
   @@index([userId])
 }
 
 model Skills {
   id String @id @default(auto()) @map("_id") @db.ObjectId
-  userId String @db.ObjectId
   skill String
 
-  profile Profile @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId String 
 
   @@index([userId])
 }
 
 model Projects {
   id String @id @default(auto()) @map("_id") @db.ObjectId
-  userId String @db.ObjectId
   name String
   image String?
   description String?
   owner String?
 
-  profile Profile @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId String 
 
   @@index([userId])
 }
 
 model Extracurricular {
   id String @id @default(auto()) @map("_id") @db.ObjectId
-  userId String @db.ObjectId
   name String
   institution String?
   description String?
@@ -152,7 +149,8 @@ model Extracurricular {
   endDate DateTime?
   current Boolean
 
-  profile Profile @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId String 
 
   @@index([userId])
 }
@@ -166,13 +164,13 @@ model Languages {
 
 model UserLanguages {
   id String @id @default(auto()) @map("_id") @db.ObjectId
-  userId String @db.ObjectId
-  languageId String @db.ObjectId
+  languageId String
   writeLevel String
   readLevel String
   speechLevel String
 
-  profile Profile @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId String
 
   @@index([userId])
 }

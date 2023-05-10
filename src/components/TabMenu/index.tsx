@@ -10,9 +10,9 @@ import Languages from "../Languages";
 
 function classNames(...classes: any) {
     return classes.filter(Boolean).join(' ')
-  }
+}
 
-export default function TabMenu() {     
+export default function TabMenu() {   
     let [categories] = useState({
         Summary: {
             id: 1,
@@ -54,15 +54,15 @@ export default function TabMenu() {
                 >
                 {Object.keys(categories).map((category) => (
                     <Tab
-                    key={category}
-                    className={({ selected }) =>
-                        classNames(
-                        'font-hanken text-lg w-full transition-all duration-200 outline-none',
-                        selected
-                            ? 'border-b-2 border-b-highlightPrimary text-highlightPrimary'
-                            : 'text-fontPrimary hover:text-highlightPrimary hover:border-b-2 hover:border-b-highlightPrimary'
-                        )
-                    }
+                        key={category}
+                        className={({ selected }) =>
+                            classNames(
+                            'font-hanken text-lg w-full transition-all duration-200 outline-none',
+                            selected
+                                ? 'border-b-2 border-b-highlightPrimary text-highlightPrimary'
+                                : 'text-fontPrimary hover:text-highlightPrimary hover:border-b-2 hover:border-b-highlightPrimary'
+                            )
+                        } 
                     >
                         {category}
                     </Tab>

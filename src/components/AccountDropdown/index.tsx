@@ -4,16 +4,16 @@ import { signOut } from 'next-auth/react'
 import { Fragment } from 'react'
 
 export function AccountDropdown() {
-    const { data } = useCurrentUser();
+    const { data: user } = useCurrentUser();
 
     return (
         <div className='flex justify-center bg-transparent cursor-pointer'>
             <Menu as='div' className='relative inline-block text-left'>
                 <div>
                     <Menu.Button>
-                        {data ? (
-                            <img 
-                                src={data.image} 
+                        {user && user.image ? (
+                            <img
+                                src={user.image} 
                                 width={45}
                                 height={45}
                                 className='rounded-full'
