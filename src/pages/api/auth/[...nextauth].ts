@@ -1,4 +1,4 @@
-import NextAuth from 'next-auth';
+import NextAuth, { AuthOptions } from 'next-auth';
 import Credentials from 'next-auth/providers/credentials';
 import { compare } from 'bcrypt';
 
@@ -10,7 +10,7 @@ import { PrismaAdapter } from '@next-auth/prisma-adapter';
 
 import prismadb from '../../../lib/prismadb';
 
-export default NextAuth({
+export const authOptions: AuthOptions = {
     providers: [
         LinkedInProvider({
             clientId: process.env.LINKEDIN_ID || '',
@@ -48,13 +48,8 @@ export default NextAuth({
                     }
                 });
 
-                if (!user) {
+                if (!user || !user.hashedPassword) {
                     throw new Error('Email does not exist');
-                }
-
-                if (!user.hashedPassword) {
-                    alert('Password incorrect')
-                    throw new Error('Password incorrect')
                 }
 
                 const isCorrectPassword = await compare(
@@ -81,4 +76,6 @@ export default NextAuth({
         secret: process.env.NEXTAUTH_JWT_SECRET,
     },
     secret: process.env.NEXTAUTH_SECRET,
-})
+};
+
+export default NextAuth(authOptions);

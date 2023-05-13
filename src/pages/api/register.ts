@@ -8,16 +8,29 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     }
 
     try {
-        const { email, name, password } = req.body;
+        const { email, name, username, password } = req.body;
 
-        const existingUser = await prismadb.user.findUnique({
+        const existingUserByEmail = await prismadb.user.findUnique({
             where: {
                 email,
             }
         });
 
-        if (existingUser) {
-            return res.status(422).json({ error: 'Email taken' });
+        const existingUserByUsername = await prismadb.user.findUnique({
+            where: {
+                username,
+            }
+        });
+
+        if (existingUserByEmail || existingUserByUsername) {
+            if (existingUserByEmail && existingUserByUsername) {
+                return res.status(422).json({ error: 'Username and Email taken' });
+            }
+
+            const taken = existingUserByEmail ? 'Email taken' : 'Username taken' as string;
+            
+
+            return res.status(422).json({ error: taken });
         }
 
         const hashedPassword = await bcrypt.hash(password, 12);
@@ -26,6 +39,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             data: {
                 email,
                 name,
+                username,
                 hashedPassword,
                 image: '',
                 emailVerified: new Date(),

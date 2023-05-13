@@ -12,6 +12,7 @@ datasource db {
 
 model User {
   id String @id @default(auto()) @map("_id") @db.ObjectId
+  username String? @unique
   name String
   image String?
   email String? @unique
@@ -71,7 +72,7 @@ model VerificationToken {
 
 model Profile {
   id String @id @default(auto()) @map("_id") @db.ObjectId
-  displayName String
+  name String
   role String
   city String
   state String
@@ -79,8 +80,10 @@ model Profile {
   quotation String
   summary String
 
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user User @relation(fields: [username], references: [username], onDelete: Cascade)
+ 
   userId String 
+  username String
 }
 
 model Experience {
