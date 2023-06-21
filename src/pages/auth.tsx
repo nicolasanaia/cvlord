@@ -10,6 +10,7 @@ import { FaGithub } from 'react-icons/fa';
 import { FaLinkedinIn } from 'react-icons/fa';
 import { NextPageContext } from 'next';
 import Head from 'next/head';
+import useCurrentUser from '@/hooks/useCurrentUser';
 
 export async function getServerSideProps(context: NextPageContext) {
     const session = await getSession(context);
@@ -49,17 +50,16 @@ export default function Auth() {
     const login = useCallback(async () => {
         try {
             await signIn('credentials', {
-                email,
-                password,
-                redirect: false,
-                callbackUrl: '/'
+              email,
+              password,
+              redirect: false,
             });
 
-            router.push('/')
-        } catch (error) {
+            router.push('/');
+          } catch (error) {
             console.log(error);
-        }
-    }, [email, password, router]);
+          }
+    }, [email, password]);
 
     const register = useCallback(async () => {
         try {

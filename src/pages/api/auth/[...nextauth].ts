@@ -1,6 +1,7 @@
-import NextAuth, { AuthOptions } from 'next-auth';
+import NextAuth, { Account, AuthOptions, User } from 'next-auth';
 import Credentials from 'next-auth/providers/credentials';
 import { compare } from 'bcrypt';
+import { getSession } from 'next-auth/react';
 
 import GithubProvider from 'next-auth/providers/github';
 import GoogleProvider from 'next-auth/providers/google';
@@ -9,6 +10,10 @@ import LinkedInProvider from 'next-auth/providers/linkedin';
 import { PrismaAdapter } from '@next-auth/prisma-adapter';
 
 import prismadb from '../../../lib/prismadb';
+
+interface CustomUser extends User {
+    username: unknown
+}
 
 export const authOptions: AuthOptions = {
     providers: [
@@ -60,10 +65,10 @@ export const authOptions: AuthOptions = {
                     throw new Error('Incorrect password');
                 }
 
-                return user;
+                return Promise.resolve(user)
             }
         })
-    ], 
+    ],
     pages: {
         signIn: '/auth', 
     },
